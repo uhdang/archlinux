@@ -18,8 +18,9 @@ PART 1: Disk Partition
 - Creating swap partition
 - Creating root and home
 - Telling linux which file systems to use for our partition
+- Mount jthe file systems
 
-PART 2: Configure the system or Installing Arch and Making it Boot
+PART 2: System Configuration
 
 PART 3: Setup Wifi connection AFTER initial Boot config
 
@@ -178,14 +179,25 @@ We now need to let linux know the file system for our partitions. For EFI with G
 
 ex)
 ```
-mkfs.fat -F32 /dev/sda1
-mkswap /dev/sda2
-swapon /dev/sda2
-mkfs.ext4 /dev/sda3
+# mkfs.fat -F32 /dev/sda1
+# mkswap /dev/sda2
+# swapon /dev/sda2
+# mkfs.ext4 /dev/sda3
 ```
 
+### Mount the file systems
+Now that we have partitions, we need to mount them. Mount root+home onto `/mnt` directory, create boot directory inside and mount boot partition onto `/mnt/boot`.
 
+ex)
+```
+# mount /dev/sda3 /mnt 
+# mkdir /mnt/boot
+# mount /dev/sda1 /mnt/boot
+```
 
+getfstab will later detect mounted file systems and swap space.
+
+## PART 2: System Configuration
 
 ### Thanks to:
 - GloriousEggroll : https://www.gloriouseggroll.tv/arch-linux-efi-install-guide/
