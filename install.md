@@ -8,7 +8,7 @@ PART 0: Preparation
 - Details regarding enabling EFI mode via BIOS
 - Details regarding booting from USB in EFI mode
 - Verify Internet connection
-- Verifying EFI mode is enabled
+- Verify the Boot mode (if EFI mode is enabled)
 
 PART 1: Disk Partition
 
@@ -28,31 +28,47 @@ PART 4: i3 setup
 
 ---
 
-### PART 0: Preparation
+## PART 0: Preparation
 
-- Items necessary
+### Items necessary
 A bootable USB (4GB or bigger) from Arch linux ISO image 
 
-- Details regarding enabling EFI mode via BIOS
+### Details regarding enabling EFI mode via BIOS
 Check your motherboard manual to find out if your computer is booted/can boot in UEFI/EFI mode. It will tell you how to enable it in the BIOS.
 
-- Details regarding booting from USB in EFI mode
+### Details regarding booting from USB in EFI mode
 Rebooting with USB stick in, you have to go to a boot menu during booting. i.e. pressing F12. Select USB that reads something like, "Arch Linux archiso x86_64 UEFI USB". Resulting screen will be,
-root@archiso ~ #
+```root@archiso ~ #```
 
-- Verify Internet connection
-Wired connection will be auth-detected, but if using wifi connection, you want to connect it via `wifi-menu`. This also creates `netctl` profile automatically. Check connection with `ping`. 
-ex1) `ping -c 3 google.com`
+### Verify Internet connection
+Wired connection will be auth-detected, but if using wifi connection, you want to connect it via `wifi-menu`:
+```
+$ wifi-menu
+```
+This also creates `netctl` profile automatically. Check connection with `ping`
+```
+$ ping -c 3 google.com // pings google.com 3 times
+```
 
-- Verify EFI mode is enabled
-Test if you are using UEFI mode with `efivar -l`. If it lists UEFI variables, you are using UEFI mode.
+### Verify the boot mode. (verify if EFI mode is enabled)
+If UEFI mode is enabled on an UEFI motherboard, Archiso will boot Arch Linux accordingly via systemd-boot. To verify this, list the *efivars* directory:
+```
+# ls /sys/firmware/efi/efivars
+```
+If the directory does not exist, the system may be booted in BIOS or CSM mode. Refer to your motherboard's manual for details. Also, you can use:
+```
+# efivar -l
+```
+If it lists UEFI variables, you are using UEFI mode:
 
-
-### PART 1: Disk Partition
+## PART 1: Disk Partition
   * We want to wipe out a drive and partition for our usage.
 
-- Finding all available drives
-In order to find out which drive to wipe out and partition, we need to see complete list of all availalbe drives. `lsblk` command will list them.
+### Finding all available drives
+In order to find out which drive to wipe out and partition, we need to see complete list of all availalbe drives. `lsblk`(List Block Devices) will list them.
+```
+lsblk
+```
 
 ex1)
 In *gloriouseggroll* case, he has 3 drives
@@ -67,8 +83,7 @@ These are known to the system as /dev/sda, /dev/sda1, /dev/sdb, /dev/sdb1 and so
 
 ex2) 
 
-
-- Wiping the existing partition table
+### Wiping the existing partition table
 Need to wipe out the current partition table so that we can rewrite it as a GPT partition table. **This will WIPE the entire drive**. Command: `gdisk [drive]` 
 
 ex1)
