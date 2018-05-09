@@ -141,12 +141,13 @@ Reference:
 - http://askubuntu.com/a/49130
 
 Now, how big should swap partition be? Recommended as following:
-| Amount of RAM      | Recommended swap space      | Recommended swap space if allowing for hibernation|
-| ------------------ | --------------------------- | --------------------------------------------------|
-| 2GB or RAM or less | 2 times the amount of RAM   | 3 times the amount of RAM                         |
-| 2GB to 8GB         | Equal to the amount of RAM  | 2 times the amount of RAM                         |
-| 8GB to 64GB        | 0.5 times the amount of RAM | 1.5 times the amount of RAM                       |
-| 64GB or more       | 4GB of swap space           | No extra space needed                             |
+
+| Amount of RAM      | Recommended swap space      | Recommended swap space if allowing for hibernation |
+| ------------------ | --------------------------- | -------------------------------------------------- |
+| 2GB or RAM or less | 2 times the amount of RAM   | 3 times the amount of RAM                          |
+| 2GB to 8GB         | Equal to the amount of RAM  | 2 times the amount of RAM                          |
+| 8GB to 64GB        | 0.5 times the amount of RAM | 1.5 times the amount of RAM                        |
+| 64GB or more       | 4GB of swap space           | No extra space needed                              |
 
 ex)
 ```
