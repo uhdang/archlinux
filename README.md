@@ -150,6 +150,7 @@ Now, how big should swap partition be? Recommended as following:
 | 64GB or more       | 4GB of swap space           | No extra space needed                              |
 
 ex)
+
 ```
 Select [New] -> press Enter
 First Sector: (Leave this blank) -> press Enter
@@ -199,6 +200,15 @@ ex)
 getfstab will later detect mounted file systems and swap space.
 
 ## PART 2: System Configuration
+
+### Setting up our Arch repository mirrorlist
+Before we initiate the install process let's select the closest mirror so that you get the best speed while downloading packages. GloriousEggoll has found the easiest method to do this via arch wiki. Make a backup:
+
+```
+# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bk
+```
+
+
 
 ### Thanks to:
 - GloriousEggroll : https://www.gloriouseggroll.tv/arch-linux-efi-install-guide/
